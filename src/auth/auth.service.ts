@@ -10,8 +10,8 @@ export class AuthService {
     private prisma: PrismaService,
     private jwtService: JwtService,
   ) {}
-
-  async login(data: LoginDto) {
+ 
+  async login(data: LoginDto) {  
     const { email, password } = data;
     const user = await this.prisma.user.findUnique({ where: { email } });
     if (!user) throw new UnauthorizedException('Invalid credentials!');

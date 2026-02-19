@@ -41,6 +41,8 @@ async function bootstrap() {
     customCss: '.swagger-ui .topbar { display: none }', // optional: hide top bar
   });
 
+  app.setGlobalPrefix("api")
+
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

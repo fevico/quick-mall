@@ -1,27 +1,13 @@
-// import { PrismaPg } from '@prisma/adapter-pg';
-// import { PrismaClient } from '../prisma/generated/client';
-// import 'dotenv/config';
-
-// const adapter = new PrismaPg({
-//   connectionString: process.env.DATABASE_URL as string,
-// });
-
-// const prisma = new PrismaClient({ adapter });
-// async function main(){
-    
-// }
-
-
 import { PrismaPg } from '@prisma/adapter-pg';
 import 'dotenv/config';
-import * as bcrypt from 'bcrypt';       
-import { PrismaClient } from '../prisma/generated/client';
+import * as bcrypt from 'bcrypt';  
+import {PrismaClient} from "../prisma/generated/client"     
 
 const adapter = new PrismaPg({      
   connectionString: process.env.DATABASE_URL as string,  
 });
 
-const prisma = new PrismaClient({ adapter });
+const prisma = new PrismaClient({ adapter });  
 
 // You can adjust these values (especially passwords!)
 const seedData = [
@@ -29,12 +15,16 @@ const seedData = [
     name: 'Super Admin',
     email: 'superadmin@example.com',
     password: 'superadmin123',
+    region: "Lagos",
+    phoneNumber: "09876556789",
     role: 'SUPER_ADMIN',
   },
   {
     name: 'Admin One',
     email: 'admin1@example.com',
     password: 'AdminPass456!',
+    region: "Ibadan",
+    phoneNumber: "09876543238",
     role: 'ADMIN',
   },
   // Add more if needed 
@@ -65,6 +55,8 @@ async function main() {
           name: userData.name,
           email: userData.email,
           password: hashedPassword,
+          region: userData.region,
+          phoneNumber: userData.phoneNumber,
           role: userData.role as any,
         },
       });
