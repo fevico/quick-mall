@@ -31,3 +31,13 @@ model User {
 
   @@index([role, id])
 }
+
+model Region {
+  id            String @id @default(cuid())
+  name          String
+  description   String 
+  active        Boolean @default(false)
+  createdAt     DateTime @default(now())
+
+  @@index([id, name])
+}
