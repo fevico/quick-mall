@@ -37,7 +37,21 @@ model Region {
   name          String
   description   String 
   active        Boolean @default(false)
+  shopper       Shopper[]
   createdAt     DateTime @default(now())
 
   @@index([id, name])
+}
+
+model Shopper  {
+  id          String @id @default(cuid())
+  name        String 
+  email       String 
+  regionId    String 
+  region      Region @relation(fields: [regionId], references: [id])
+  rating      Int?
+  status      String 
+
+  @@unique([email])
+  @@index([id, email, status])
 }
